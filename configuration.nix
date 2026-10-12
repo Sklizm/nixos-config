@@ -8,7 +8,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.umbriel.enable = true;
   programs.noctalia.enable = true;
-  environment.systemPackages = with pkgs; [ git kitty ];
+  environment.variables.EDITOR = "micro";
+  environment.systemPackages = with pkgs; [ git kitty micro ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -34,8 +35,18 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
+  # Enable the Noctalia Greeter
+  services.displayManager.noctalia-greeter = {
+   enable = true;
+   settings = {
+     keyboard = {
+       layout = "us,ro,ru";
+       options = "grp:alt_shift_toggle";
+    };
+   };
+  };
+
+  # Enable the GNOME Desktop Environment
   services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
