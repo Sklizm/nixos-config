@@ -89,6 +89,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # CachyOS Kernel
+  nix.settings = {
+  	substituters = [ "https://attic.xuyh0120.win/lantian" ];
+  	trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+  };
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+  
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   # environment.systemPackages = with pkgs; [
