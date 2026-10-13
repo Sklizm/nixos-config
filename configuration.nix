@@ -89,6 +89,15 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # GPU Drivers
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+  	open = true;
+  	modesetting.enable = true;
+  };
+
   # CachyOS Kernel
   nix.settings = {
   	substituters = [ "https://attic.xuyh0120.win/lantian" ];
