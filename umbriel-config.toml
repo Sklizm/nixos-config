@@ -24,7 +24,7 @@ files = []
 # Optional session examples. XWayland support is enabled by default.
 # https://docs.noctalia.dev/umbriel/configuration/#general
 [general]
-autostart = ["noctalia", "kitty"]
+autostart = ["noctalia"]
 # xwayland = false
 # Sharp X11 apps and games on scaled outputs; they see physical resolutions.
 # xwayland_native_resolution = true
@@ -62,6 +62,20 @@ autostart = ["noctalia", "kitty"]
 # scale = 1.25
 # vrr = "fullscreen"
 # hdr = "auto"
+
+  [output.DP-2]
+  mode = "2560x1440@239.958"
+  position = [0, 0]
+  scale = 1
+  vrr = "fullscreen"
+  hdr = "auto"
+
+  [output.HDMI-A-1]
+  mode = "1920x1080@59.939"
+  position = [2560, 0]
+  scale = 1
+  vrr = "fullscreen"
+  hdr = "auto"
 
 # ==============================================================================
 # Appearance
@@ -118,6 +132,18 @@ numlock_toggle = true
 # enabled = true
 # map_to_output = "eDP-1"
 
+  [input.mouse]
+  accel_profile = "flat"
+  sensitivity = -0.3
+
+  [input.cursor]
+  theme = "Bibata-Modern-Classic"
+  size = 20
+  hardware_cursor = true
+  follows_focus = false
+  hide_when_typing = false
+  hide_timeout_ms = 0
+
 # ==============================================================================
 # Keybinds
 # Defining this table replaces the built-in bind set, so every active bind that
@@ -129,10 +155,15 @@ numlock_toggle = true
 
 # Applications and session
 "Mod+Return" = { action = "spawn:kitty", repeat = false }
+"Mod+E" = { action = "spawn:kitty -- yazi", repeat = false}
 "Mod" = "spawn:noctalia msg panel-toggle launcher"
 "Mod+Q" = { action = "window-close", repeat = false }
 "Mod+Escape" = "session-quit"
 "Mod+Shift+Escape" = { action = "shortcuts-inhibit-toggle", allow_when_inhibited = true, repeat = false }
+
+# Screenshot
+"Print" = "spawn:noctalia msg screenshot-region"
+"Super+Print" = "spawn:noctalia msg screenshot-fullscreen"
 
 # Focus and movement
 "Mod+Left" = "window-focus-left"
